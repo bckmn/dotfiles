@@ -1,0 +1,18 @@
+[user]
+	name = Simon Bäckman
+	email = simon@bckmn.se
+
+[includeIf "gitdir:~/work/"]
+	path = ~/.gitconfig-work
+
+[init]
+	defaultBranch = main
+
+[alias]
+	st = status
+	co = checkout
+	update = !git checkout master && git pull
+	cm = commit -m
+	ca = commit --amend
+	lon = log --oneline
+	cp = cherry-pick
