@@ -13,6 +13,9 @@ vim.o.expandtab = true -- Pressing the TAB key will insert spaces instead of a T
 vim.o.softtabstop = 2 -- Number of spaces inserted instead of a TAB character
 vim.o.shiftwidth = 2 -- Number of spaces inserted when indenting
 
+-- disable nvim intro
+vim.opt.shortmess:append("sI")
+
 -- Enable mouse mode, can be useful for resizing splits for example!
 -- vim.opt.mouse = "a"
 
