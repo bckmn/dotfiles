@@ -4,6 +4,8 @@ if [[ -f "/opt/homebrew/bin/brew" ]] then
 	eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
+XDG_CONFIG_HOME="$HOME/.config"
+
 export EDITOR=nvim
 
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
