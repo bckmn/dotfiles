@@ -112,6 +112,7 @@ return {
 		local servers = {
 			cssls = {},
 			ts_ls = {},
+			gopls = {},
 			lua_ls = {
 				settings = {
 					Lua = {
