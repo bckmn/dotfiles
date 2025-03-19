@@ -11,7 +11,8 @@
 [alias]
 	st = status
 	co = checkout
-	update = !git checkout master && git pull
+	cb = checkout -b
+	update = !git checkout main && git pull
 	cm = commit -m
 	ca = commit --amend
 	lon = log --oneline
