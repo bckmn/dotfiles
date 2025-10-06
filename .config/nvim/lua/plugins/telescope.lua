@@ -7,7 +7,11 @@ return {
 		{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
 	},
 	config = function()
-		require("telescope").setup({})
+		require("telescope").setup({
+			defaults = {
+				file_ignore_patterns = { "%__virtual.cs$" },
+			},
+		})
 
 		local builtin = require("telescope.builtin")
 		vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })

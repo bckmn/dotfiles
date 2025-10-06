@@ -2,7 +2,17 @@ return {
 	-- Main LSP Configuration
 	"neovim/nvim-lspconfig",
 	dependencies = {
-		{ "williamboman/mason.nvim", config = true },
+		{
+			"williamboman/mason.nvim",
+			config = function()
+				require("mason").setup({
+					registries = {
+						"github:mason-org/mason-registry",
+						"github:Crashdummyy/mason-registry",
+					},
+				})
+			end,
+		},
 		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		{ "j-hui/fidget.nvim", opts = {} },
@@ -88,7 +98,10 @@ return {
 				-- This may be unwanted, since they displace some of your code
 				if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
 					map("<leader>th", function()
-						vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
+						vim.lsp.inlay_hint.enable(
+							not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }),
+							{ bufnr = event.buf }
+						)
 					end, "[T]oggle Inlay [H]ints")
 				end
 			end,
@@ -98,7 +111,7 @@ return {
 		--  By default, Neovim doesn't support everything that is in the LSP specification.
 		--  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
 		--  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
-		local capabilities = vim.lsp.protocol.make_client_capabilities()
+		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 		-- Enable the following language servers
 		--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -115,6 +128,11 @@ return {
 				filetypes = { "javascript", "typescript", "typescriptreact", "javascriptreact", "mdx" },
 			},
 			gopls = {},
+			html = {
+				-- Note: razor and cshtml are NOT included here
+				-- They are handled by rzls.nvim which uses aftershave as an HTML wrapper
+				filetypes = { "html" },
+			},
 			lua_ls = {
 				settings = {
 					Lua = {
@@ -126,14 +144,11 @@ return {
 			},
 		}
 
-		require("mason").setup()
-
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {
 			"stylua", -- Used to format Lua code
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
-
 		require("mason-lspconfig").setup({
 			ensure_installed = vim.tbl_keys(servers),
 			automatic_installation = true,

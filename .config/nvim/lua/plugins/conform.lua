@@ -19,9 +19,13 @@ return { -- Autoformat
 			-- have a well standardized coding style. You can add additional
 			-- languages here or re-enable it for the disabled ones.
 			local disable_filetypes = { c = true, cpp = true }
+			-- For Razor files, prefer LSP formatting over external formatters
+			local razor_filetypes = { razor = true }
 			local lsp_format_opt
 			if disable_filetypes[vim.bo[bufnr].filetype] then
 				lsp_format_opt = "never"
+			elseif razor_filetypes[vim.bo[bufnr].filetype] then
+				lsp_format_opt = "prefer"
 			else
 				lsp_format_opt = "fallback"
 			end
