@@ -63,3 +63,11 @@ zstyle ':completion:*' special-dirs true
 alias ls='ls --color'
 alias ll='ls -la --color'
 alias vim='nvim'
+
+# bun completions
+[ -s "/Users/simon/.bun/_bun" ] && source "/Users/simon/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
