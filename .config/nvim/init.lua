@@ -108,3 +108,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins")
+
+-- Load LSP configuration
+require("lsp")
