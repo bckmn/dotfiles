@@ -1,0 +1,68 @@
+// ~/.config/zellij/config.kdl
+
+// -------------------------------------------------------------------
+// General options
+// -------------------------------------------------------------------
+
+default_layout "compact"
+default_mode "locked"
+
+mouse_mode true
+pane_frames false
+
+scroll_buffer_size 10000
+
+// Clipboard (macOS)
+copy_command "pbcopy"
+copy_on_select true
+
+// -------------------------------------------------------------------
+// Session persistence
+// -------------------------------------------------------------------
+
+session_serialization true
+pane_viewport_serialization true
+scrollback_lines_to_serialize 1000
+serialization_interval 300
+session_metadata true
+
+attach_to_session true
+
+// -------------------------------------------------------------------
+// Theme
+// -------------------------------------------------------------------
+
+theme "nord"
+
+// -------------------------------------------------------------------
+// Keybindings
+// -------------------------------------------------------------------
+
+keybinds {
+
+    // ---------------------------------------------------------------
+    // PRIMARY MODE: LOCKED (your normal "just type" state)
+    // ---------------------------------------------------------------
+
+    locked {
+
+        // Pane navigation (vim-style)
+        bind "Ctrl h" { MoveFocus "Left"; }
+        bind "Ctrl j" { MoveFocus "Down"; }
+        bind "Ctrl k" { MoveFocus "Up"; }
+        bind "Ctrl l" { MoveFocus "Right"; }
+
+        // Pane management
+        bind "Ctrl n" { NewPane "Right"; }
+        bind "Ctrl m" { NewPane "Down"; }
+        bind "Ctrl x" { CloseFocus; }
+        bind "Ctrl f" { ToggleFocusFullscreen; }
+
+        // Tabs
+        bind "Ctrl 1" { GoToTab 1; }
+        bind "Ctrl 2" { GoToTab 2; }
+        bind "Ctrl 3" { GoToTab 3; }
+        bind "Ctrl 4" { GoToTab 4; }
+        bind "Ctrl 5" { GoToTab 5; }
+    }
+}

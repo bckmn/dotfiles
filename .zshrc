@@ -11,6 +11,7 @@ export NVM_DIR="$HOME/.nvm"
 XDG_CONFIG_HOME="$HOME/.config"
 
 export EDITOR=nvim
+export ZELLIJ_CONFIG_DIR="$HOME/.config/zellij"
 
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
